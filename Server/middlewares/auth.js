@@ -42,6 +42,8 @@ exports.auth = async (req, res, next) => {
         });
     }
 };
+// These functions are used as middleware to authorise user requests
+//verify the role if the user is a student
 exports.isStudent = async (req, res, next) => {
     try {
         const userDetails = await User.findOne({ email: req.user.email });
@@ -59,6 +61,7 @@ exports.isStudent = async (req, res, next) => {
             .json({ success: false, message: `User Role Can't be Verified` });
     }
 };
+//verify the role if the user is an Admin
 exports.isAdmin = async (req, res, next) => {
     try {
         const userDetails = await User.findOne({ email: req.user.email });
@@ -76,6 +79,7 @@ exports.isAdmin = async (req, res, next) => {
             .json({ success: false, message: `User Role Can't be Verified` });
     }
 };
+//verify the role if the user is an Instructor
 exports.isInstructor = async (req, res, next) => {
     try {
         const userDetails = await User.findOne({ email: req.user.email });
